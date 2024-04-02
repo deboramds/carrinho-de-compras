@@ -4,19 +4,22 @@ const items = [
     {
         id: 0,
         nome:"camiseta",
-        img: "img/image.jpg",
+        img: "img/camiseta.jpg",
+        valor: "R$ 39,99",
         quantidade: 10
     },
     {
         id: 1,
         nome:"short",
-        img: "img/image.jpg",
+        img: "img/shorts.jpg",
+        valor: "R$ 100,00",
         quantidade: 20
     },
     {
         id: 2,
         nome:"sapato",
-        img: "img/image.jpg",
+        img: "img/sapato.jpg",
+        valor: "R$ 199,99",
         quantidade: 11
     }
 ]
@@ -31,8 +34,10 @@ let inicializarLoja = () => {
 
     <div class="produto-single">
     <img src="${val.img}"/>
-    <p> ${val.nome}</p>
-    <a key="${val.id}" href="#">Adicionar ao Carrinho!</a>
+    <div class= "botão-adicionar-carrinho">
+    <i class="fa-solid fa-cart-shopping"></i>  
+    <a key="${val.id}" href="#" class="botao-comprar">Adicionar ao Carrinho</a>
+    </div>
     </div>
         `;
     })
@@ -49,8 +54,13 @@ let atualizarCarrinho = () => {
         if(val.quantidade > 0){
         containerCarrinho.innerHTML+= `
         
-        <p>${val.nome} | quantidade: ${val.quantidade}</p>
+        <img src="${val.img}"/><br/>
+        <p>${val.nome}</p>
+        <p> quantidade: ${val.quantidade}</p>
+        <p>Valor unitário: R$ ${val.valor.replace("R$","")}</p>
+        <button onclick='removerDoCarrinho(${val.id})'>Remover
         <hr>
+        
 
 
         `;
@@ -60,7 +70,7 @@ let atualizarCarrinho = () => {
 
 }
 
-atualizarCarrinho();
+
 
 
 var links = document.getElementsByTagName('a');
@@ -76,3 +86,4 @@ for(var i = 0; 1 < links.length; i++){
 
 }
 
+atualizarCarrinho();
